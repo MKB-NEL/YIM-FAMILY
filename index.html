@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YIM FAMILY-CSMR</title>
+  <link rel="icon" href="image/favicon.jpg" type="image/png">
+</head>
+<style>
+  /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    padding-top: 120px; /* To ensure content doesn't hide under the fixed header */
+  }
+  
+  /* Header Styles (same as before) */
+  header {
+    background-color: #001300; 
+    border-radius: 15px;
+    padding: 20px 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: padding 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h1 {
+    color: #4CAF50;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1.2em;
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #4CAF50;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  }
+  
+  .join-us {
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 25px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .join-us:hover {
+    background-color: #4CAF50;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+  }
+  
+  /* Boxes Section */
+  .boxes-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px; /* Ensure space from header */
+  }
+  
+  .box {
+    width: 100%; /* Change from 150% to 100% for better responsiveness */
+    max-width: 800px; /* Increase max-width for larger screens */
+    padding: 40px; /* Increase padding for more spacious content */
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex; /* Flexbox layout */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .box-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .text-left {
+    flex: 1;
+    padding-right: 20px;
+    text-align: left;
+  }
+  
+  .image-right {
+    flex: 1;
+    text-align: right;
+  }
+  
+  /* Style the text */
+  h2 {
+    font-size: 2.5em; /* Increase the title size */
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.3em; /* Slightly increase font size for better readability */
+    color: #666;
+    line-height: 1.6; /* More line spacing for readability */
+    font-style: italic; /* Italicize the paragraph */
+  }
+  
+  /* Box-specific styles */
+  .box-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px; /* Rounded corners for the images */
+    margin-top: 20px;
+    display: block;
+  }
+  
+  .image-gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+  
+  .box-video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 15px; /* Rounded corners for video */
+    margin-top: 20px;
+    display: block;
+  }
+  
+  /* Scroll effect trigger */
+  .boxes-section > .box {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  
+  .boxes-section > .box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Spacer Section Styles */
+.spacer {
+  min-height: 120vh; /* Taller than the viewport for added emphasis */
+  width: 100%; /* Full width */
+  background: url('image/back.jpeg') no-repeat center center/cover; /* Background image with full coverage */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  position: relative; /* Positioning context for children */
+  padding: 50px 20px; /* Add padding for extra spacing */
+}
+
+.spacer-box {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between input and button */
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+  padding: 20px 30px; /* Add padding for spacing inside */
+  border-radius: 30px; /* Smooth rounded corners */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow effect for depth */
+  max-width: 600px; /* Maximum width to maintain usability */
+  width: 80%; /* Responsive width for smaller screens */
+}
+
+.name-input {
+  flex: 1; /* Grow to fill available space */
+  padding: 15px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.name-input:focus {
+  border-color: #4CAF50; /* Green border on focus */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Subtle glow effect */
+}
+
+.join-button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #4CAF50; /* Green background */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 10px; /* Smooth rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-button:hover {
+  background-color: #3d8d40; /* Darker green on hover */
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Slight glow effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .spacer-box {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    gap: 15px;
+    width: 90%; /* Adjust width for mobile devices */
+  }
+
+  .join-button {
+    width: 100%; /* Button takes full width */
+    text-align: center;
+  }
+
+  /* Adjust the box content layout */
+  .box {
+    flex-direction: column;
+    padding: 20px; /* Reduce padding for mobile */
+  }
+
+  .box-content {
+    flex-direction: column; /* Stack the text and image vertically */
+    align-items: center;
+  }
+
+  .text-left, .image-right {
+    text-align: center; /* Center-align text and images */
+    padding: 10px;
+  }
+
+  .box-image {
+    max-width: 90%; /* Ensure the image fits smaller screens */
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #001300; /* Dark green background */
+  color: #4CAF50; /* Green text */
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #4CAF50; /* Green heading */
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 1.2em;
+  color: #4CAF50; /* Green text */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #00ff00; /* Brighter green on hover */
+}
+
+.footer-bottom {
+  border-top: 1px solid #4CAF50;
+  margin-top: 30px;
+  padding-top: 20px;
+  font-size: 1em;
+  color: #4CAF50;
+}
+</style>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="header-content">
+      <h1>YIM FAMILY-CSMR</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Events</a>
+        <a href="#">Contact</a>
+        <a href="#" class="join-us">JOIN US</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Spacer Section -->
+  <section class="spacer">
+    <div class="spacer-box">
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <button class="join-button">JOIN</button>
+    </div>
+  </section>
+
+  <!-- Content Section with 3 boxes -->
+  <section class="boxes-section">
+    <div class="box" id="box1">
+      <div class="box-content">
+        <div class="text-left">
+          <h2>Build Connections</h2>
+          <p>Empower individuals by fostering meaningful relationships with others.</p>
+        </div>
+        <div class="image-right">
+          <img id="box1-image" src="image/build.jpg" alt="Build Connections" class="box-image">
+        </div>
+      </div>
+    </div>
+    
+    <div class="box" id="box2">
+      <div class="box-content">
+        <div class="text-left">
+          <h2>Education & Development</h2>
+          <p>Provide opportunities for continuous growth through various learning resources.</p>
+        </div>
+        <div class="image-right">
+          <div class="image-gallery" id="box2-images">
+            <img src="image/2.jpg" alt="Image 2" class="box-image">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="box" id="box3">
+      <div class="box-content">
+        <div class="text-left">
+          <h2>Global Impact</h2>
+          <p>Make a difference across borders by contributing to global initiatives.</p>
+        </div>
+        <div class="image-right">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>About YIM FAMILY-CSMR</h2>
+        <p>We are dedicated to building connections, fostering education, and making a global impact.</p>
+      </div>
+      <div class="footer-section links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@yimfamily.com</p>
+        <p>Phone: +123 456 7890</p>
+        <p>Address: 123 Greenway, Global City</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 YIM FAMILY-CSMR | Designed with ❤️ | Product of btem@official.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Detect scroll and trigger the appearance of content
+window.addEventListener('scroll', function() {
+    let boxes = document.querySelectorAll('.box');
+  
+    boxes.forEach(box => {
+      if (isInViewport(box)) {
+        box.classList.add('visible');
+      }
+    });
+  });
+  
+  // Helper function to check if element is in viewport
+  function isInViewport(element) {
+    let rect = element.getBoundingClientRect();
+    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+  }
+  </script>
+</body>
+</html>
