@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - YIM FAMILY-CSMR</title>
+  <link rel="icon" href="image/favicon.jpg" type="image/png">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+      padding-top: 120px; /* To prevent overlap with the header */
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #001300;
+      border-radius: 15px;
+      padding: 20px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      color: #4CAF50;
+      font-size: 2.5em;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.2em;
+      position: relative;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+      text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    }
+
+    /* Contact Page Styles */
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-header h2 {
+      font-size: 2.5em;
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+
+    .contact-header p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+
+    .info-box {
+      flex: 1;
+      min-width: 250px;
+      background-color: #001300;
+      color: #4CAF50;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-box h3 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .info-box p, .info-box a {
+      font-size: 1.2em;
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: #001300;
+      color: #4CAF50;
+      padding: 50px 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #4CAF50;
+      margin-top: 30px;
+      padding-top: 20px;
+      font-size: 1em;
+      color: #4CAF50;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      nav a {
+        margin: 10px 0;
+      }
+
+      .contact-info {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="header-content">
+      <h1>YIM FAMILY-CSMR</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="about.html">About</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html" class="join-us">JOIN US</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contact Page Content -->
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2>Contact Us</h2>
+      <p>We would love to hear from you. Please fill out the form below or reach us through the provided details.</p>
+    </div>
+    <div class="contact-form">
+      <form>
+        <div class="form-group">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message:</label>
+          <textarea id="message" placeholder="Enter your message" required></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <div class="info-box">
+        <h3>Email</h3>
+        <p>support@yimfamily.com</p>
+      </div>
+      <div class="info-box">
+        <h3>Phone</h3>
+        <p>+123 456 7890</p>
+      </div>
+      <div class="info-box">
+        <h3>Address</h3>
+        <p>123 Greenway, Global City</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2024 YIM FAMILY-CSMR | Designed with ❤️ | Product of btem@official.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

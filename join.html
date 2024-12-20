@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOIN US-YIM CSMR</title>
+  <link rel="icon" href="image/favicon.jpg" type="image/png">
+  <style>
+    /* Reset and Box Sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #ffffff, #e0e0e0); /* White emission background */
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 1200px;
+      width: 95%;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .welcome-section {
+      flex: 1;
+      background: #38830d;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      padding: 50px 30px;
+      position: relative;
+      text-align: left;
+    }
+
+    .welcome-section h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    .welcome-section p {
+      font-size: 1.3em;
+      line-height: 1.5;
+    }
+
+    .slideshow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .slideshow img {
+      max-width: 100%;
+      height: auto;
+      opacity: 0;
+      position: absolute;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    .login-section {
+      flex: 1;
+      padding: 50px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #333;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #6c63ff;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1em;
+      color: #555;
+    }
+
+    .form-options a {
+      color: #6c63ff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .form-options a:hover {
+      color: #333;
+    }
+
+    .login-button {
+      padding: 15px 25px;
+      font-size: 1.2em;
+      color: white;
+      background: #0b5d00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .login-button:hover {
+      background: #0b5d00;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .create-account {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1em;
+    }
+
+    .create-account a {
+      color: #6c63ff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .create-account a:hover {
+      color: #333;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s ease;
+    }
+
+    .loader.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .loader .spinner {
+      display: flex;
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .loader .spinner div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 10px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loader .spinner div:first-child {
+      border-top-color: green;
+      animation-direction: normal;
+    }
+
+    .loader .spinner div:last-child {
+      border-bottom-color: green;
+      animation-direction: reverse;
+    }
+
+    .loader h1 {
+      color: white;
+      margin-top: 20px;
+      font-size: 2em;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .welcome-section, .login-section {
+        padding: 30px 20px;
+      }
+
+      .welcome-section h1 {
+        font-size: 2em;
+      }
+
+      .login-section h2 {
+        font-size: 1.8em;
+      }
+
+      .form-group input {
+        font-size: 1em;
+      }
+
+      .loader .spinner {
+        width: 80px;
+        height: 80px;
+      }
+
+      .loader h1 {
+        font-size: 1.8em;
+      }
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1em;
+      font-weight: bold;
+      color: white;
+      background-color: #6c63ff;
+      border: none;
+      border-radius: 25px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      top: 20px;
+      left: 100px;
+    }
+
+    .back-button:hover {
+      background-color: #047812;
+      transform: scale(1.05);
+    }
+    
+    .back-button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">BACK</a>
+  <div class="loader" id="loader">
+    <div class="spinner">
+      <div></div>
+      <div></div>
+    </div>
+    <h1>YIM</h1>
+  </div>
+  <div class="container" id="login-container">
+    <div class="welcome-section">
+      <h1>HEY<br>Chat,Post,Interact...</h1>
+      <div class="slideshow">
+        <img src="image/11.png" class="active" alt="Slide 1">
+        <img src="image/22.png" alt="Slide 2">
+        <img src="image/33.png" alt="Slide 3">
+      </div>
+    </div>
+    <div class="login-section">
+      <h2>YIM MEMBER LOG IN:</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your names" required>
+        </div>
+        <div class="form-group">
+          <label for="otp">OTP Code:</label>
+          <input type="text" id="otp" name="otp" placeholder="Enter your OTP" required>
+        </div>
+        <div class="form-options">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+        <button type="submit" class="login-button">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const otpList = ["0032", "0561", "1204", "4132", "5063", "6421", "3056", "4512", "6024", "1305", 
+"2514", "5031", "6260", "4023", "0132", "5306", "3641", "2764", "4305", "6152", 
+"5410", "6402", "0213", "1645", "5263", "3501", "4210", "5312", "6340", "2061", 
+"0502", "1345", "6014", "4532", "2564", "0214", "3125", "5406", "1432", "6240", 
+"3165", "4513", "1264", "5102", "5631", "6415", "3140", "2605", "3251", "4613"];
+
+
+    // Function to check if the user has already logged in
+    function checkLoginStatus() {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (isLoggedIn) {
+        showLoader();
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 5000);
+      }
+    }
+
+    // Function to show the loader
+    function showLoader() {
+      document.getElementById("loader").classList.add("active");
+    }
+
+    // Function to handle form submission
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const otp = document.getElementById("otp").value;
+
+      if (otpList.includes(otp)) {
+        // Store login status in local storage
+        localStorage.setItem("isLoggedIn", "true");
+
+        // Send data to Formspree
+        fetch("https://formspree.io/f/xpwzvdgr", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: name, otp: otp }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              showLoader();
+              setTimeout(() => {
+                window.location.href = "home.html";
+              }, 5000);
+            } else {
+              alert("There was an error submitting the form. Please try again.");
+            }
+          })
+          .catch(() => {
+            alert("There was an error submitting the form. Please try again.");
+          });
+      } else {
+        alert("Sorry your OTP code is incorrect. Retry");
+      }
+    });
+
+    // Start slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slideshow img");
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }
+
+    setInterval(showNextSlide, 4000);
+
+    // Check login status on page load
+    checkLoginStatus();
+  </script>
+</body>
+</html>
